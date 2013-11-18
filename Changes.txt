@@ -1,0 +1,12 @@
+ - Locked down versions in the Gemfiles
+ - Updated Team form to handle changes to formtastic gem
+ - Removed Organization from Provider pages
+ - Added force_unsecure_communications: true to the development environment
+ - Added teams and team_names to User model
+ - Fixed Provider filters on the measures page to display all providers, rather than only the first 20
+ - Added Teams display on User admin page
+ - Added page to add/remove Teams to a User
+ - By default, filter measures by providers associated to the teams the user is associated with
+ - Updated Patient Count on the measures index page to be filtered by the providers associated to the teams the user is associated with
+ - Filtered patient lists and patient export on the measure detail pages by providers associated to the teams the user is associated with
+ - To fix pagination on provider create/edit, removed AJAX from the form 
