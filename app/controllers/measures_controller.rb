@@ -28,6 +28,42 @@ class MeasuresController < ApplicationController
     @alt_measures = Measure.alternate_measures.group_by { |m| m['category'] }
   end
   
+  
+	def test
+		book = Spreadsheet::Workbook.new
+		sheet1 = book.create_worksheet
+		
+		format = Spreadsheet::Format.new :weight => :bold
+		
+		sheet1.row(0).concat %w{Name Country Acknowlegement}
+		sheet1.row(0).default_format = format
+		sheet1[1,0] = 'Japan'
+		row = sheet1.row(1)
+		row.push 'Creator of Ruby'
+		row.unshift 'Yukihiro Matsumoto'
+		sheet1.row(2).replace [ 'Daniel J. Berger', 'U.S.A.',
+				                    'Author of original code for Spreadsheet::Excel' ]
+		sheet1.row(3).push 'Charles Lowe', 'Author of the ruby-ole Library'
+		sheet1.row(3).insert 1, 'Unknown'
+		sheet1.update_row 3, "hahaha", 'bahah', 'zahaha'
+		sheet1.update_row 4, 'Hannes Wyss', 'Switzerland', 'Author'
+		
+#		book.write 'excel-file.xls'
+		
+		data = StringIO.new '';
+		book.write data;
+
+		send_data(data.string, {
+		  :disposition => 'attachment',
+		  :encoding => 'utf8',
+		  :stream => false,
+		  :type => 'application/excel',
+		  :filename => 'test.xls'
+		})
+		
+	end
+  
+  
   def show
     respond_to do |wants|
       wants.html do
@@ -72,8 +108,6 @@ class MeasuresController < ApplicationController
   
   def providers    
     authorize! :manage, :providers
-
-    
     
     respond_to do |wants|
       wants.html {}
@@ -276,16 +310,29 @@ class MeasuresController < ApplicationController
   
   
   def set_up_environment
-    # @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
-    if @selected_provider
+#    # @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
+#    if @selected_provider
+#      @patient_count = @selected_provider.records(@effective_date).count
+#    else
+#      #begin
+#        @patient_count = Record.all.count #Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
+#      #rescue
+#       # @patient_count = 0
+#      #end
+#    end
+    
+    provider_npi = params[:npi]
+		if @current_user.admin? && provider_npi
+    	@patient_count = Provider.where(:npi => "#{provider_npi}").first.records(@effective_date).count
+    elsif @current_user.admin?		
+			@patient_count = Record.all.count
+    elsif @selected_provider
       @patient_count = @selected_provider.records(@effective_date).count
     else
-      #begin
-        @patient_count = Record.all.count #Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
-      #rescue
-       # @patient_count = 0
-      #end
+    	# for teams
+      @patient_count = Record.provider_in(Provider.generate_user_provider_ids(current_user)).count
     end
+    
     if params[:id]
       measure = QME::QualityMeasure.new(params[:id], params[:sub_id])
       render(:file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404) unless measure
