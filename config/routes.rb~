@@ -14,9 +14,6 @@ PopHealth::Application.routes.draw do
   delete "admin/remove_caches"
   delete "admin/remove_providers"
   
-  get "measures/test"
-  post "measures/test"
-  
   match 'admin/edit_teams/:id', :to => 'admin#edit_teams', :via => [ :get, :post ]
 
   get "logs/index"

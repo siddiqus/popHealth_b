@@ -210,6 +210,9 @@
 				<div class="exclusions"></div><span>exclusions</span>
 			</div>
 			<br/>
+			
+			<%= button_to "Export Report", :controller => "measures", :action => "test" %>
+			
 		</div><!-- end #measureDetailTable -->
 		<table class="measureTable" style="float:left">
 			<tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow">

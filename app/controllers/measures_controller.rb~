@@ -35,7 +35,7 @@ class MeasuresController < ApplicationController
 		
 		format = Spreadsheet::Format.new :weight => :bold
 		
-		sheet1.row(0).concat %w{Name Country Acknowlegement}
+		sheet1.row(0).concat %w{Measure_Name Country Acknowlegement}
 		sheet1.row(0).default_format = format
 		sheet1[1,0] = 'Japan'
 		row = sheet1.row(1)
@@ -320,6 +320,8 @@ class MeasuresController < ApplicationController
 #       # @patient_count = 0
 #      #end
 #    end
+    
+    @provider_count = Provider.all.userfilter(current_user).count
     
     provider_npi = params[:npi]
 		if @current_user.admin? && provider_npi

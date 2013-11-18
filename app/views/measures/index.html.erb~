@@ -195,7 +195,7 @@
 			<% unless (@selected_provider) %>
 				<dl>
 					<dt># of Providers: </dt>
-					<dd><%= @provider_count%> </dd>
+					<dd><%= @provider_count %> </dd>
 				</dl>
 			<% end %>
 			<div class="clear"></div>
@@ -210,6 +210,9 @@
 				<div class="exclusions"></div><span>exclusions</span>
 			</div>
 			<br/>
+			
+			<%= button_to "Export Report", "measures_test_path" %>
+			
 		</div><!-- end #measureDetailTable -->
 		<table class="measureTable" style="float:left">
 			<tr style="<%= display_header(@core_measures, current_user.selected_measures)%>" class="headerRow">
