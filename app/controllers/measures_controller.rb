@@ -321,6 +321,8 @@ class MeasuresController < ApplicationController
 #      #end
 #    end
     
+    @provider_count = Provider.all.userfilter(current_user).count
+    
     provider_npi = params[:npi]
 		if @current_user.admin? && provider_npi
     	@patient_count = Provider.where(:npi => "#{provider_npi}").first.records(@effective_date).count

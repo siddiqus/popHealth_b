@@ -310,16 +310,16 @@ class MeasuresController < ApplicationController
   
   
   def set_up_environment
-    # @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
-    if @selected_provider
-      @patient_count = @selected_provider.records(@effective_date).count
-    else
-      #begin
-        @patient_count = Record.all.count #Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
-      #rescue
-       # @patient_count = 0
-      #end
-    end
+#    # @patient_count = (@selected_provider) ? @selected_provider.records(@effective_date).count : mongo['records'].count
+#    if @selected_provider
+#      @patient_count = @selected_provider.records(@effective_date).count
+#    else
+#      #begin
+#        @patient_count = Record.all.count #Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
+#      #rescue
+#       # @patient_count = 0
+#      #end
+#    end
     
     provider_npi = params[:npi]
 		if @current_user.admin? && provider_npi
