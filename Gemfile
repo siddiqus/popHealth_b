@@ -43,6 +43,8 @@ group :assets do
   gem 'sass-rails', '3.2.5' # was 3.1.6
   gem 'coffee-rails', '3.2.2' # was 3.1.1
   gem 'uglifier', '1.2.6'
+	gem 'bootstrap-sass', '3.0.2.1'
+	gem 'jquery-datatables-rails', :path => 'external/jquery-datatables-rails'
 end
 
 group :test, :develop do

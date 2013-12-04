@@ -1,3 +1,7 @@
+jQuery ->
+        $('#providerTable').dataTable
+          sPaginationType: "full_numbers"
+
 @Providers = {
 	updateAggregate: (current_measure, sub_id) ->
 		@isPollRequestActive = true

@@ -9,7 +9,7 @@ class ProvidersController < ApplicationController
   
   def index
     # @providers = Provider.alphabetical.page(params[:page]).per(60)
-    @providers = Provider.userfilter(current_user).alphabetical.page(params[:page]).per(20)
+    @providers = Provider.userfilter(current_user) #.alphabetical.page(params[:page]).per(20)
     
     respond_to do |wants|
       wants.html {}

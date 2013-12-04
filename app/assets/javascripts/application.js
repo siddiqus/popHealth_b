@@ -6,7 +6,9 @@
 //
 // = require jquery
 // = require jquery_ujs
+// = require dataTables/jquery.dataTables
 // = require_tree .
+// = require bootstrap
 
 $(".tableMeasureTitle span").hoverIntent(
        {over: function(e) {
