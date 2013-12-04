@@ -1,0 +1,64 @@
+<%= form_for @provider, {html: {id: "providerForm", class: "form-horizontal"}, remote: true} do |f| %>
+
+    <div class='control-group form-inline'>
+      <label class="control-label">
+              Name:
+      </label>
+      <div class="controls" >
+        <%= f.text_field :title, 'class' => "input-mini", placeholder: "Title", :disabled => disabled%>
+        <%= f.text_field :given_name, 'class' => "input-small", placeholder: "First Name", :disabled => disabled %>
+        <%= f.text_field :family_name, 'class' => "input-small", placeholder: "Last Name", :disabled => disabled %>
+  	  </div>
+    </div>
+    <div class="control-group">        
+	    <%= f.label :npi, "NPI:", 'class' => 'control-label', :disabled=>"true" %>
+      <div class="controls">
+        <%= f.text_field :npi, class: "input-small", :disabled=> disabled%>
+      </div>
+    </div>
+    <div class="control-group">        
+      <%= f.label :tin, "Tax ID:", 'class' => 'control-label', :disabled=>disabled %>
+      <div class="controls">
+        <%= f.text_field :tin, class: "input-small", :disabled=>disabled%>
+      </div>
+    </div>
+    <div class="control-group">        
+    	<%= f.label :team_id, "Team:", 'class' => 'control-label', :disabled=>"true" %>
+      <div class="controls">
+         <%= f.collection_select :team_id, Team.alphabetical, :id, :name, {include_blank: true}, :disabled=> disabled%>
+      </div>
+    </div>
+    <div class="control-group">        
+      <%= f.label :specialty, "Specialty:", 'class' => 'control-label', :disabled=>"true"%>
+	    <div class="controls">
+        <%= f.select :specialty, specialties, {include_blank: true}, :disabled=>disabled, :style=>"width:300px" %>
+      </div>
+    </div>
+    
+    <div class="control-group">        
+      <%= f.label :organization, "Organization:", 'class' => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :organization, :value => @provider.organization[:name], class: "input-small", style: "width:300px", :disabled => disabled%>
+    	</div>	
+    </div>
+    
+    <div class="control-group">        
+      <%= f.label :phone, "Phone#:", 'class' => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :phone, class: "input-small", style: "width:300px", :disabled => disabled%>
+      </div>
+    </div>
+    <br>
+    
+    <% if current_user.admin? %>
+    <div class="control-group">
+	    <div class="controls">
+        <%= submit_tag "Save", class: "btn btn-primary", :style => "width:120px", :confirm => "Are you sure you want to save changes?"%>
+			  <%#= link_to "Add New Provider", new_provider_path, remote: true, class: "btn" %>
+      </div>
+    </div>
+    <% end %>
+
+<% end %> <!-- end of form -->
+
+
