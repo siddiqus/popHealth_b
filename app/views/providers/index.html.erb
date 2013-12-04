@@ -1,3 +1,26 @@
-<%= render partial: 'edit_profile', locals: {provider: Provider.new} %>
-<%= render partial: 'provider_list', locals: {providers: @providers} %>
+<%#= render partial: 'edit_profile', locals: {provider: Provider.new} %>
+<!--Added by ssiddiqui -->
+<style type='text/css'>
+	.titleContent{
+   	display: inline;
+   }
+</style>
+
+<hr style='margin-bottom:-10px'>
+<div>
+	<h2 style='padding-left:40px'><strong>Providers</strong></h2>
+<hr style="margin-top:-5px">
+
+	<div align="right">
+	<% if current_user.admin? %>	
+		<%= link_to "Edit Teams", teams_path, remote: true, :class => "btn btn-large btn-success"%> 
+		<%= link_to "Delete All Providers", "/admin/remove_providers", 'method' => 'delete', 
+		:confirm => "Are you sure you want to delete all the providers?", 'class' => 'btn btn-large btn-danger'%>
+	<% end %>
+	</div>
+
+<br>
+<div style='margin-left:40px'>
+	<%= render partial: 'provider_list', locals: {providers: @providers} %>
+</div>
 <%#= paginate @providers %>

@@ -54,7 +54,7 @@
   <% end %>
 
   <%= yield %>
-
+<!--
   <% if Rails.env.development? %>
 	  <% if flash[:error] %>
 	  	Error<br />
@@ -64,6 +64,7 @@
   	  Filters <% if @filters %> - Provider filter count = <%= @filters["providers"].count %> <% end %>
 	  <%= debug @filters %>
   <% end %>
+-->
 </div><!-- end #container -->
 
 </body>

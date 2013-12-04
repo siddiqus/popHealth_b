@@ -36,22 +36,16 @@ form#providerForm {
   top: 4px; 
 }
 
-table#providerList {
-	margin-top:10px;
-	margin-left:10px;
+#providerTable{
 	th {
-		color: $graytext;
+//		color: $graytext;
 	}
-	
 	td {
-		padding-right:110px;
-	
+//		padding-right:110px;
 		a {
 			color :$linkcolor;
 		}
 	}
-	
-	
 }
 
 div #providerMain { 
