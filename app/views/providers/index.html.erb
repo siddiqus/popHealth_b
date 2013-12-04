@@ -7,11 +7,10 @@
 </style>
 
 <hr style='margin-bottom:-10px'>
-<div>
-	<h2 style='padding-left:40px'><strong>Providers</strong></h2>
+<h2 style="padding-left:40px"><strong>Providers</strong></h2>
 <hr style="margin-top:-5px">
 
-	<div align="right">
+	<div align="right" style='margin-right:20px'>
 	<% if current_user.admin? %>	
 		<%= link_to "Edit Teams", teams_path, remote: true, :class => "btn btn-large btn-success"%> 
 		<%= link_to "Delete All Providers", "/admin/remove_providers", 'method' => 'delete', 
@@ -20,7 +19,7 @@
 	</div>
 
 <br>
-<div style='margin-left:40px'>
+<div style='margin-left:40px;margin-right:20px'>
 	<%= render partial: 'provider_list', locals: {providers: @providers} %>
 </div>
 <%#= paginate @providers %>

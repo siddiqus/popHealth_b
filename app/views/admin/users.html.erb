@@ -93,8 +93,12 @@
 </script>
 <% end -%>
 
+
+<hr style='margin-bottom:-10px'>
+<h2 style="padding-left:40px"><strong>Users</strong></h2>
+<hr style="margin-top:-5px">
+
 <div id="pageContent">
-<h1>Users</h1>
 <table id="patientTable">
   <tr>
     <th>First Name</th>
@@ -107,7 +111,6 @@
     <th>Status</th>
     <th colspan="2">Teams</th>
   </tr>
-  <% i = 0 %>
   <% @users.each do |user| -%>
   <tr>
     <td><%= user.first_name %></td>
