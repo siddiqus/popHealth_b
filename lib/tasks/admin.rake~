@@ -31,7 +31,7 @@ namespace :admin do
 			  zipfile.entries.each do |entry|
 			    next if entry.directory?
 			    if(entry.name == nil)
-			    	
+			    	print i
 			    else	
 			    	xml = zipfile.read(entry.name) 
 			    	result = RecordImporter.import(xml)

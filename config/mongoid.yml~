@@ -14,4 +14,4 @@ production:
 #  password: <%= ENV['MONGOID_PASSWORD'] %>
 #  database: <%= ENV['MONGOID_DATABASE'] %>
   host: localhost
-  database: pophealth-production
+  database: pophealth-development
