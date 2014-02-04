@@ -6,7 +6,7 @@ GIT
       jquery-rails
 
 PATH
-  remote: ../quality-measure-engine
+  remote: ../quality-measure-engine-v1
   specs:
     quality-measure-engine (1.1.5)
       mongo (~> 1.3)

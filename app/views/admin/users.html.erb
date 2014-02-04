@@ -111,6 +111,7 @@
     <th>Status</th>
     <th colspan="2">Teams</th>
   </tr>
+	<% i = 0 %>
   <% @users.each do |user| -%>
   <tr>
     <td><%= user.first_name %></td>
@@ -148,7 +149,8 @@
     <td>
       <a href="#" class="<%= (user.disabled?) ? 'disable' : 'enable'%>" data-username="<%= user.username %>"><%= (user.disabled?) ? 'disabled' : 'enabled'%></a>
     </td>
-  <% i = i + 1 %>
+ 
+			<% i = i + 1 %>
     <!-- Teams Columns -->
     <td>
     	<a class="teamView" href='<%= "#teamViewTooltip_" + i.to_s %>' rel='<%= "#teamViewTooltip_" + i.to_s %>' title="<%= user.first_name %>'s Teams">View</a>

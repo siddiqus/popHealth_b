@@ -332,7 +332,7 @@ class MeasuresController < ApplicationController
       @patient_count = @selected_provider.records(@effective_date).count
     else
     	# for teams
-      @patient_count = Record.provider_in(Provider.generate_user_provider_ids(current_user)).count
+      @patient_count = Record.provider_in(Provider.generateUserProviderIDList(current_user)).count
     end
     
     if params[:id]
